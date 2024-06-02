@@ -13,6 +13,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Resources.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Media.Playback;
@@ -32,7 +33,10 @@ namespace DropStackWinUI.FileViews
             this.InitializeComponent();
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(TitleBarRectangle);
-            if (getText("xRTL") == "true") EverythingGrid.FlowDirection = FlowDirection.RightToLeft;
+            
+            // Set the root flow direction
+            string flowSetting = ResourceContext.GetForViewIndependentUse().QualifierValues["LayoutDirection"];
+            RootGrid.FlowDirection = flowSetting == "RTL" ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
 
             setImageSource(settings);
         }

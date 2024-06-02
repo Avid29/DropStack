@@ -14,7 +14,7 @@
         <MicaBackdrop Kind="Base"/>
     </Window.SystemBackdrop>
 
-    <Grid x:Name="EverythingGrid">
+    <Grid x:Name="RootGrid">
         <Grid.Resources>
             <CommandBarFlyout x:Name="FileCommandsFlyout">
                 <AppBarButton x:Name="FlyoutOpenButton" x:Uid="ContextMenuButtonOpen" Icon="OpenFile" Click="FlyoutOpenButton_Click"/>

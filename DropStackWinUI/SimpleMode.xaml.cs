@@ -38,6 +38,7 @@ using Windows.ApplicationModel.VoiceCommands;
 using System.Xml.Serialization;
 using Microsoft.Win32;
 using DropStackWinUI.FileViews;
+using Windows.ApplicationModel.Resources.Core;
 
 namespace DropStackWinUI
 {
@@ -92,8 +93,10 @@ namespace DropStackWinUI
             loadFromCache("regular");
 
             this.Activated += OnWindowActivated;
-
-            if (getText("xRTL") == "true") ContentGrid.FlowDirection = FlowDirection.RightToLeft;
+            
+            // Set the root flow direction
+            string flowSetting = ResourceContext.GetForViewIndependentUse().QualifierValues["LayoutDirection"];
+            ContentGrid.FlowDirection = flowSetting == "RTL" ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
 
             if (!enableFreeWindowing)
             {

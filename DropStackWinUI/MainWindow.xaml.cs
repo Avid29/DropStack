@@ -41,8 +41,8 @@ using Microsoft.Windows.AppNotifications;
 using WinUIEx.Messaging;
 using Microsoft.VisualBasic;
 using Windows.Devices.Input;
-using Microsoft.Windows.ApplicationModel.Resources;
 using Windows.ApplicationModel.Resources;
+using Windows.ApplicationModel.Resources.Core;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -196,9 +196,10 @@ namespace DropStackWinUI
             adjustDarkLightMode();
             loadSettings();
             this.Activated += OnWindowActivated;
-
-            if (getText("xRTL") == "true") EverythingGrid.FlowDirection = FlowDirection.RightToLeft;
-            DetailsPaneVideoPlayer.FlowDirection = FlowDirection.LeftToRight;
+            
+            // Set the root flow direction
+            string flowSetting = ResourceContext.GetForViewIndependentUse().QualifierValues["LayoutDirection"];
+            RootGrid.FlowDirection = flowSetting == "RTL" ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
 
             if (string.IsNullOrEmpty(folderToken) || string.IsNullOrEmpty(pinnedFolderToken))
             {

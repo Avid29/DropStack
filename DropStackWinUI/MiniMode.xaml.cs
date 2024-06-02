@@ -29,6 +29,7 @@ using System.Numerics;
 using System.Xml.Serialization;
 using System.Diagnostics;
 using DropStackWinUI.FileViews;
+using Windows.ApplicationModel.Resources.Core;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -72,8 +73,10 @@ namespace DropStackWinUI
         {
             this.InitializeComponent();
             this.Activated += OnWindowActivated;
-
-            if (getText("xRTL") == "true") EverythingGrid.FlowDirection = FlowDirection.RightToLeft;
+            
+            // Set the root flow direction
+            string flowSetting = ResourceContext.GetForViewIndependentUse().QualifierValues["LayoutDirection"];
+            RootGrid.FlowDirection = flowSetting == "RTL" ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
 
             ExtendsContentIntoTitleBar = true;
             SetTitleBar(TitleBarGrid);

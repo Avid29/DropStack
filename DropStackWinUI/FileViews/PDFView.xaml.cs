@@ -1,5 +1,6 @@
 using Microsoft.UI.Xaml;
 using System;
+using Windows.ApplicationModel.Resources.Core;
 using Windows.Storage;
 using Windows.UI.ViewManagement;
 
@@ -14,8 +15,11 @@ namespace DropStackWinUI.FileViews
             SetTitleBar(TitleBarGrid);
             WebViewRendererComponent.Source = new Uri("file:///" + path);
             applyTitlebarText(path);
-            if (getText("xRTL") == "true") EverythingGrid.FlowDirection = FlowDirection.RightToLeft;
-            WebViewRendererComponent.FlowDirection = FlowDirection.LeftToRight;
+
+            
+            // Set the root flow direction
+            string flowSetting = ResourceContext.GetForViewIndependentUse().QualifierValues["LayoutDirection"];
+            RootGrid.FlowDirection = flowSetting == "RTL" ? FlowDirection.RightToLeft : FlowDirection.LeftToRight;
         }
 
         public string getText(string key)

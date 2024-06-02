@@ -13,11 +13,11 @@
         <MicaBackdrop Kind="BaseAlt"/>
     </Window.SystemBackdrop>
 
-    <Grid x:Name="EverythingGrid">
+    <Grid x:Name="RootGrid">
         <Grid x:Name="TitleBarGrid" Height="30" VerticalAlignment="Top">
             <Rectangle x:Name="TitleBarRectangle" Opacity="0"/>
             <TextBlock x:Name="TitleBarText" HorizontalAlignment="Left" VerticalAlignment="Top" Text="DropStack PDF Viewer" Margin="10,5,0,0"/>
         </Grid>
-        <WebView2 x:Name="WebViewRendererComponent" Margin="0,30,0,0" Source="https://www.github.com/Blindside-Studios/DropStack" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <WebView2 x:Name="WebViewRendererComponent" FlowDirection="LeftToRight" Margin="0,30,0,0" Source="https://www.github.com/Blindside-Studios/DropStack" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
     </Grid>
 </winex:WindowEx>
